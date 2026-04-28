@@ -5,71 +5,34 @@ A modular, AI-powered translation platform built with SOLID design principles, d
 ## Features
 
 - **Text Translation** — Translate text between 16+ languages with auto-detection
-- **Audio Translation** — Upload an audio file and get transcription + translation
+- **Audio Translation** — Upload an audio file and get transcription + translation side by side
+- **Real-Time Voice** — Record your voice and get streaming word-by-word translation instantly
 - **Conversation Memory** — Full history stored per session with session isolation
-- **Real-Time Audio** — Record your voice and get streaming translation instantly
 
 ## Tech Stack
 
 - Python 3.10+
 - Streamlit (UI)
 - Groq API — LLaMA 3.3 70B (translation) + Whisper Large v3 (transcription)
-- CmsAI API — Professor-provided on-campus backend (optional)
-
-## Architecture
-
-The system follows SOLID design principles with an agentic workflow:
-
-- `LLMProvider` interface — implemented by `CmsAIProvider` and `GroqProvider`
-- `TranscriptionProvider` interface — implemented by `GroqWhisperProvider`
-- `MemoryStore` interface — implemented by `InMemoryStore`
-- `LanguageDetectionAgent` — builds translation prompts
-- `TranslationAgent` — handles LLM calls
-- `TranscriptionAgent` — handles audio transcription
-- `StreamingTranslationAgent` — handles real-time streaming
-- `Orchestrator` — coordinates all agents and memory
-- `app.py` — Streamlit UI, only talks to Orchestrator
-
-## Setup
-
-```bash
-git clone git@github.com:AMSONI777/Agentic-Translation-System.git
-cd Agentic-Translation-System
-python -m venv venv
-
-# Windows
-venv\Scripts\activate
-
-# Mac/Linux
-source venv/bin/activate
-
-pip install -r requirements.txt
-streamlit run app.py
-```
-
-## Backend Switching
-
-Change `PROVIDER` in `.env` to switch backends:
+- CmsAI API — Optional on-campus backend
 
 ## Getting Your Own API Key (Required)
 
-The `.env` file in this repo may contain an expired or revoked Groq 
-API key — GitHub bots automatically detect and revoke exposed keys.
-You need to generate your own free key. It takes 2 minutes:
+The `.env` file in this repo may contain an expired or revoked Groq API key — GitHub bots automatically detect and revoke exposed keys. You need to generate your own free key. It takes 2 minutes:
 
 1. Go to https://console.groq.com
 2. Sign up for a free account (no credit card required)
 3. Click **API Keys** in the left sidebar
 4. Click **Create API Key**
 5. Copy the key
-6. Open the `.env` file in the project root
-7. Replace the existing key:
+6. Open the `.env` file in the project root and replace the existing key:
 
+```
 PROVIDER=groq
 GROQ_API_KEY=paste_your_new_key_here
+```
 
-Groq's free tier is generous — hundreds of requests per day, 
-no payment needed.
+Groq's free tier is generous — hundreds of requests per day, no payment needed.
 
 ## Setup
 
@@ -94,32 +57,45 @@ The app opens automatically at http://localhost:8501
 
 Change `PROVIDER` in `.env` to switch backends:
 
+```
 PROVIDER=groq      # default — works anywhere
-
 PROVIDER=cmsai     # on-campus professor API only
+```
 
 You can also switch at runtime using the sidebar dropdown in the app.
 
+## Architecture
+
+The system follows SOLID design principles with an agentic workflow:
+
+- `LLMProvider` interface — implemented by `CmsAIProvider` and `GroqProvider`
+- `TranscriptionProvider` interface — implemented by `GroqWhisperProvider`
+- `MemoryStore` interface — implemented by `InMemoryStore`
+- `LanguageDetectionAgent` — builds translation prompts (no LLM dependency)
+- `TranslationAgent` — handles LLM calls
+- `TranscriptionAgent` — handles audio transcription
+- `StreamingTranslationAgent` — handles real-time streaming
+- `Orchestrator` — coordinates all agents and memory
+- `app.py` — Streamlit UI, only talks to Orchestrator
+
 ## Project Structure
 
-translation_system/
+```
+Agentic-Translation-System/
 ├── providers/          # LLM and transcription provider implementations
-
 ├── agents/             # Translation, transcription, detection, streaming agents
-
 ├── core/               # Orchestrator, memory store, data models
-
 ├── app.py              # Streamlit UI
-
 ├── config.py           # Environment configuration
-
-└── requirements.txt
+├── requirements.txt
+└── .env                # PROVIDER and GROQ_API_KEY
+```
 
 ## Requirements
+
+```
 streamlit
-
 requests
-
 groq
-
 python-dotenv
+```

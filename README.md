@@ -64,3 +64,53 @@ You need to generate your own free key. It takes 2 minutes:
 5. Copy the key
 6. Open the `.env` file in the project root
 7. Replace the existing key:
+
+PROVIDER=groq
+GROQ_API_KEY=paste_your_new_key_here
+
+Groq's free tier is generous — hundreds of requests per day, 
+no payment needed.
+
+## Setup
+
+```bash
+git clone https://github.com/AMSONI777/Agentic-Translation-System.git
+cd Agentic-Translation-System
+python -m venv venv
+
+# Windows
+venv\Scripts\activate
+
+# Mac/Linux
+source venv/bin/activate
+
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+The app opens automatically at http://localhost:8501
+
+## Backend Switching
+
+Change `PROVIDER` in `.env` to switch backends:
+
+PROVIDER=groq      # default — works anywhere
+PROVIDER=cmsai     # on-campus professor API only
+
+You can also switch at runtime using the sidebar dropdown in the app.
+
+## Project Structure
+
+translation_system/
+├── providers/          # LLM and transcription provider implementations
+├── agents/             # Translation, transcription, detection, streaming agents
+├── core/               # Orchestrator, memory store, data models
+├── app.py              # Streamlit UI
+├── config.py           # Environment configuration
+└── requirements.txt
+
+## Requirements
+streamlit
+requests
+groq
+python-dotenv

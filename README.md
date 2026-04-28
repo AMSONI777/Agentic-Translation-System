@@ -50,3 +50,17 @@ streamlit run app.py
 ## Backend Switching
 
 Change `PROVIDER` in `.env` to switch backends:
+
+## Getting Your Own API Key (Required)
+
+The `.env` file in this repo may contain an expired or revoked Groq 
+API key — GitHub bots automatically detect and revoke exposed keys.
+You need to generate your own free key. It takes 2 minutes:
+
+1. Go to https://console.groq.com
+2. Sign up for a free account (no credit card required)
+3. Click **API Keys** in the left sidebar
+4. Click **Create API Key**
+5. Copy the key
+6. Open the `.env` file in the project root
+7. Replace the existing key:

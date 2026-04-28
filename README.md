@@ -117,6 +117,9 @@ translation_system/
 
 ## Requirements
 streamlit
+
 requests
+
 groq
+
 python-dotenv

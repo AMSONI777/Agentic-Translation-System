@@ -95,6 +95,7 @@ The app opens automatically at http://localhost:8501
 Change `PROVIDER` in `.env` to switch backends:
 
 PROVIDER=groq      # default — works anywhere
+
 PROVIDER=cmsai     # on-campus professor API only
 
 You can also switch at runtime using the sidebar dropdown in the app.
@@ -103,10 +104,15 @@ You can also switch at runtime using the sidebar dropdown in the app.
 
 translation_system/
 ├── providers/          # LLM and transcription provider implementations
+
 ├── agents/             # Translation, transcription, detection, streaming agents
+
 ├── core/               # Orchestrator, memory store, data models
+
 ├── app.py              # Streamlit UI
+
 ├── config.py           # Environment configuration
+
 └── requirements.txt
 
 ## Requirements

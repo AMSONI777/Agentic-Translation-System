@@ -99,3 +99,14 @@ requests
 groq
 python-dotenv
 ```
+
+## Project Report
+📄 [Download the Project Report (PDF)](./report.pdf)
+
+## 📐 Class Diagram
+
+View the interactive class diagram designed with Mermaid:
+
+🔗 **[View Class Diagram](https://shorturl.at/nZtl9)**
+
+> **Note:** It may take up to 10 seconds for the diagram to render after clicking the link. Once loaded, the diagram is fully zoomable for better clarity.

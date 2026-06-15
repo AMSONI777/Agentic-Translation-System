@@ -101,7 +101,7 @@ python-dotenv
 ```
 
 ## Project Report
-📄 [Download the Project Report (PDF)](./report.pdf)
+📄 [Download the Project Report (PDF)](Design_Report.pdf)
 
 ## 📐 Class Diagram
 
